@@ -14,7 +14,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope, $ionicHistory,$state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,4 +27,13 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
       StatusBar.styleDefault();
     }
   });
+
+  var needLoginView = ["editUserInfoPage"];//需要登录的页面state
+  $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options){
+    if(needLoginView.indexOf(toState.name)>=0&&!$rootScope.isLogin){//判断当前是否登录
+      $state.go("loginPage");//跳转到登录页
+      event.preventDefault(); //阻止默认事件，即原本页面的加载
+    }
+  })
+
 })

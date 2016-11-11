@@ -16,17 +16,17 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('mineTabDefaultPageCtrl', ['$scope', '$stateParams','$http','$state',  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('mineTabDefaultPageCtrl', ['$scope', '$stateParams','$http','$state','$rootScope',  // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$state) {
-    if(!$stateParams.phonenumber)
+function ($scope, $stateParams,$http,$state,$rootScope) {
+    if(!$rootScope.isLogin)
         $scope.user={phonenumber:'点击登录/注册'};
     else
         $scope.user={phonenumber:$stateParams.phonenumber};
 
-    $scope.click= function(){
-        if(!$stateParams.phonenumber)
+    $scope.infoClick= function(){
+        if(!$rootScope.isLogin)
             $state.go('loginPage');
         else{
             $state.go('userInfoPage',{phonenumber : $stateParams.phonenumber});
@@ -38,18 +38,16 @@ function ($scope, $stateParams,$http,$state) {
 
 }])
       
-.controller('loginPageCtrl', ['$scope', '$stateParams','$http','$state','$ionicHistory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginPageCtrl', ['$scope', '$stateParams','$http','$state','$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$state,$ionicHistory) {
+function ($scope, $stateParams,$http,$state,$rootScope) {
     $scope.user = {phonenumber:$stateParams.phonenumber};
     $scope.login= function(){
         $http.post('/users/login',$scope.user)
             .success(function (data, status, headers, config) {
                 console.log(data);
-                $ionicHistory.nextViewOptions({
-                    disableBack: true
-                });
+                $rootScope.isLogin=true;
                 $state.go('tabsController.mineTabDefaultPage',{phonenumber : data.phonenumber});
             });
     }
