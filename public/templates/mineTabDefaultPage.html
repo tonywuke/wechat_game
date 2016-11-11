@@ -1,0 +1,19 @@
+<ion-view style="" id="page4" title="Mine Tab Default Page(我的)">
+  <ion-content class="has-header" padding="true" ng-controller="mineTabDefaultPageCtrl" >
+    <ion-list class="manual-list-fullwidth" id="mineTabDefaultPage-list2" ng-click="click()">
+      <ion-item style="" id="mineTabDefaultPage-list-item2" class="item-avatar item-icon-right">
+        <img src="img/4K3hiNwBQMySZPBbd94L_tmpdir__16_11_7_11_26_57.gif">
+        <h2 >{{user.phonenumber}}</h2>
+        <p></p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+    <div style="width: 283px; height: 35px;" class="spacer"></div>
+    <ion-list class="manual-list-fullwidth" id="mineTabDefaultPage-list6">
+      <ion-item style="" ui-sref="editUserInfoPage({phonenumber: user.phonenumber})" id="mineTabDefaultPage-list-item13" class="item-icon-left item-icon-right">
+        <i class="icon ion-edit"></i>编辑个人信息
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
