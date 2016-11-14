@@ -23,13 +23,13 @@ function ($scope, $stateParams,$http,$state,$rootScope) {
     if(!$rootScope.isLogin)
         $scope.user={phonenumber:'点击登录/注册'};
     else
-        $scope.user={phonenumber:$stateParams.phonenumber};
+        $scope.user={phonenumber:localStorage.getItem("phonenumber")};
 
     $scope.infoClick= function(){
         if(!$rootScope.isLogin)
             $state.go('loginPage');
         else{
-            $state.go('userInfoPage',{phonenumber : $stateParams.phonenumber});
+            $state.go('userInfoPage',{phonenumber : localStorage.getItem("phonenumber")});
         }
     }
 
@@ -48,7 +48,8 @@ function ($scope, $stateParams,$http,$state,$rootScope) {
             .success(function (data, status, headers, config) {
                 console.log(data);
                 $rootScope.isLogin=true;
-                $state.go('tabsController.mineTabDefaultPage',{phonenumber : data.phonenumber});
+                localStorage.setItem("phonenumber", data.phonenumber);
+                $state.go('tabsController.mineTabDefaultPage');
             });
     }
 }])
@@ -69,7 +70,7 @@ function ($scope, $stateParams,$http,$state,$ionicPopup,$ionicHistory) {
                    okText: '确定', // String (默认: 'OK')。OK按钮的文字。
                    okType: '', // String (默认: 'button-positive')。OK按钮的类型。
                });
-               $state.go('loginPage',{phonenumber : data.phonenumber});
+               $state.go('loginPage');
            });
    }
 }])

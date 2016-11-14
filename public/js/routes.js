@@ -7,8 +7,6 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
-  
 
     .state('tabsController.homeTabDefaultPage', {
     url: '/home-tab-default-page',
@@ -31,7 +29,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.mineTabDefaultPage', {
-    url: '/mine-tab-default-page/:phonenumber/',
+    url: '/mine-tab-default-page',
     views: {
       'tab3': {
         templateUrl: 'templates/mineTabDefaultPage.html',
@@ -47,19 +45,15 @@ angular.module('app.routes', [])
   })
 
   .state('loginPage', {
-    url: '/login-page/:phonenumber/',
+    url: '/login-page',
     templateUrl: 'templates/loginPage.html',
     controller: 'loginPageCtrl'
   })
 
-  .state('tabsController.signupPage', {
+  .state('signupPage', {
     url: '/signup-page',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/signupPage.html',
-        controller: 'signupPageCtrl'
-      }
-    }
+    templateUrl: 'templates/signupPage.html',
+    controller: 'signupPageCtrl'
   })
 
   .state('userInfoPage', {
