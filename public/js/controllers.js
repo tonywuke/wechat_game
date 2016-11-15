@@ -42,7 +42,7 @@ function ($scope, $stateParams,$http,$state,$rootScope) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$http,$state,$rootScope,$ionicPopup,$timeout) {
     $scope.login= function(){
-        $http.post('/users/login',$scope.user)
+        $http.post($rootScope.urlAddress+'/users/login',$scope.user)
             .success(function (data, status, headers, config) {
                 console.log(data);
                 if(data.isLoginSuccess==true){
@@ -63,12 +63,12 @@ function ($scope, $stateParams,$http,$state,$rootScope,$ionicPopup,$timeout) {
     }
 }])
    
-.controller('signupPageCtrl', ['$scope', '$stateParams', '$http','$state','$ionicPopup','$ionicHistory','$timeout',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('signupPageCtrl', ['$scope', '$stateParams', '$http','$state','$ionicPopup','$ionicHistory','$timeout','$rootScope',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$state,$ionicPopup,$ionicHistory,$timeout) {
+function ($scope, $stateParams,$http,$state,$ionicPopup,$ionicHistory,$timeout,$rootScope) {
    $scope.signup= function(){
-       $http.post('/users/signup',$scope.user)
+       $http.post($rootScope.urlAddress+'/users/signup',$scope.user)
            .success(function (data, status, headers, config) {
                console.log(data);
                var sigupPopup = $ionicPopup.show({
@@ -85,20 +85,20 @@ function ($scope, $stateParams,$http,$state,$ionicPopup,$ionicHistory,$timeout) 
 
 
 
-.controller('userInfoPageCtrl', ['$scope', '$stateParams', '$http','$state',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('userInfoPageCtrl', ['$scope', '$stateParams', '$http','$state','$rootScope',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$state) {
+function ($scope, $stateParams,$http,$state,$rootScope) {
     $scope.user = {phonenumber:$stateParams.phonenumber};
 
-    $http.get('/users/get-user-info',{params: $scope.user} )
+    $http.get($rootScope.urlAddress+'/users/get-user-info',{params: $scope.user} )
         .success(function (data, status, headers, config) {
             console.log(data);
             $scope.user=data;
         });
 
     $scope.saveUserInfo= function(){
-        $http.post('/users/save-user-info',$scope.user)
+        $http.post($rootScope.urlAddress+'/users/save-user-info',$scope.user)
             .success(function (data, status, headers, config) {
                 console.log(data);
                 $state.go('tabsController.mineTabDefaultPage');
@@ -108,10 +108,10 @@ function ($scope, $stateParams,$http,$state) {
 }])
 
 
-.controller('verifyMailboxPageCtrl', ['$scope', '$stateParams','$interval','$http', '$ionicPopup', '$timeout','$state',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('verifyMailboxPageCtrl', ['$scope', '$stateParams','$interval','$http', '$ionicPopup', '$timeout','$state','$rootScope',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$interval,$http,$ionicPopup,$timeout,$state) {
+function ($scope, $stateParams,$interval,$http,$ionicPopup,$timeout,$state,$rootScope) {
     $scope.isSendCode=false;
     $scope.sendCodeBtnText='发送验证码';
     $scope.sendCode= function() {
@@ -121,7 +121,7 @@ function ($scope, $stateParams,$interval,$http,$ionicPopup,$timeout,$state) {
             email:$scope.email
         };
 
-        $http.post('/users/send-verify-mail',user)
+        $http.post($rootScope.urlAddress+'/users/send-verify-mail',user)
             .success(function (data, status, headers, config) {
                 if(data=='success') {
                     var timer = $interval(function () {
@@ -154,7 +154,7 @@ function ($scope, $stateParams,$interval,$http,$ionicPopup,$timeout,$state) {
             email:$scope.email,
             emailCode:$scope.emailCode
         };
-        $http.post('/users/verify-mailbox',user)
+        $http.post($rootScope.urlAddress+'/users/verify-mailbox',user)
             .success(function (data, status, headers, config) {
                 console.log(data);
                 if(data=='success'){

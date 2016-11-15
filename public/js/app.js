@@ -28,6 +28,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     }
   });
 
+  $rootScope.urlAddress='http://localhost:3000';//后台数据通信地址
+
   var needLoginView = ["userInfoPage",'verifyMailboxPage'];//需要登录的页面state
   $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options){
     if(needLoginView.indexOf(toState.name)>=0&&!$rootScope.isLogin){//判断当前是否登录
