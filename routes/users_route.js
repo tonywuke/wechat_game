@@ -6,10 +6,14 @@ var usersConroller = require('../controllers/users_controller');
 
 router.post('/signup', usersConroller.signup);
 
-
- router.post('/login', usersConroller.login);
+router.post('/login', usersConroller.login);
 
 router.post('/save-user-info', usersConroller.saveUserInfo);
+
+router.post('/send-verify-mail', usersConroller.sendVerifyMail);
+
+router.post('/verify-mailbox', usersConroller.verifyMailbox);
+
 
 router.get('/get-user-info', usersConroller.getUserInfo);
 

@@ -1,25 +1,41 @@
 <ion-view style="" id="page7" title="User Info Page（个人信息）">
   <ion-content class="has-header" padding="true" ng-controller="userInfoPageCtrl">
-    <ion-list class="manual-list-fullwidth" id="userInfoPage-list5">
-      <ion-item style="" id="userInfoPage-list-item6" class="item-icon-right">头像
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-      <ion-item style="" id="userInfoPage-list-item7" class="item-icon-right">名字
-        <span class="item-note">{{user.username}}</span>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-      <ion-item style="" id="userInfoPage-list-item10" class="item-icon-right">性别
-        <span class="item-note">{{user.sex}}</span>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-      <ion-item style="" id="userInfoPage-list-item11" class="item-icon-right">地区
-        <span class="item-note">{{user.area}}</span>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-      <ion-item style="" id="userInfoPage-list-item12" class="item-icon-right">学历
-        <span class="item-note">{{user.education}}</span>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
+    <form class="list" id="userInfoPage-form3">
+      <ion-list class="manual-list-fullwidth" id="userInfoPage-list7">
+        <label id="editUserInfoPage-input8" class="item item-input">
+          <span class="input-label">头像</span>
+          <input placeholder="" type="text">
+        </label>
+        <label id="userInfoPage-input9" class="item item-input">
+          <span class="input-label">姓名</span>
+          <input placeholder="" type="text" ng-model="user.username" style="text-align:right ">
+        </label>
+        <label id="userInfoPage-select1" class="item item-select">
+          <span class="input-label">性别</span>
+          <select ng-model="user.sex">
+            <option>男</option>
+            <option>女</option>
+          </select>
+        </label>
+        <label id="userInfoPage-select2" class="item item-select">
+          <span class="input-label">区域</span>
+          <select ng-model="user.area">
+            <option>北京</option>
+            <option>上海</option>
+          </select>
+        </label>
+        <label id="userInfoPage-select3" class="item item-select">
+          <span class="input-label">学历</span>
+          <select ng-model="user.education">
+            <option>博士</option>
+            <option>硕士</option>
+            <option>本科</option>
+            <option>专科</option>
+          </select>
+        </label>
+      </ion-list>
+      <div style="height: 40px;" class="spacer"></div>
+      <button class="button button-positive  button-block" id="userInfoPage-button1" ng-click="saveUserInfo()">保存</button>
+    </form>
   </ion-content>
 </ion-view>

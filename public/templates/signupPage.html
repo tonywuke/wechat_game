@@ -11,10 +11,10 @@
           <span class="input-label">密码</span>
           <input placeholder="6-32位字母数字组合" type="text" ng-model="user.password">
         </label>
-        <ion-checkbox style="" name="agreement" id="signupPage-checkbox1">我已经同意并阅读《用户使用协议》</ion-checkbox>
+        <ion-checkbox style="" name="agreement" id="signupPage-checkbox1" ng-model="isAgreement" >我已经同意并阅读《用户使用协议》</ion-checkbox>
       </ion-list>
       <div style="width: 300px; height: 42px;" class="spacer"></div>
-      <button class="button button-positive  button-block" id="signupPage-button5" ng-click="signup()">立即注册</button>
+      <button class="button button-positive  button-block" id="signupPage-button5" ng-click="signup()"  ng-disabled="!isAgreement">立即注册</button>
     </form>
   </ion-content>
 </ion-view>

@@ -28,7 +28,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     }
   });
 
-  var needLoginView = ["editUserInfoPage"];//需要登录的页面state
+  var needLoginView = ["userInfoPage",'verifyMailboxPage'];//需要登录的页面state
   $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams, options){
     if(needLoginView.indexOf(toState.name)>=0&&!$rootScope.isLogin){//判断当前是否登录
       $state.go("loginPage");//跳转到登录页

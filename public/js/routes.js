@@ -29,6 +29,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController.mineTabDefaultPage', {
+    cache: false,
     url: '/mine-tab-default-page',
     views: {
       'tab3': {
@@ -63,10 +64,11 @@ angular.module('app.routes', [])
     controller: 'userInfoPageCtrl'
   })
 
-  .state('editUserInfoPage', {
-    url: '/edit-user-info-page/:phonenumber/',
-    templateUrl: 'templates/editUserInfoPage.html',
-    controller: 'editUserInfoPageCtrl'
+  .state('verifyMailboxPage', {
+    cache: false,
+    url: '/verify-mailbox-page',
+    templateUrl: 'templates/verifyMailboxPage.html',
+    controller: 'verifyMailboxPageCtrl'
   })
 
   $urlRouterProvider.otherwise('/tabs-controller/home-tab-default-page')
