@@ -5,6 +5,12 @@ angular.module('app.controllers', [])
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+    $scope.color= 'red';
+    $scope.cards=[
+        {name:'wuke' , editDate:'2016/11/16', title:'寻找另一个地方',likeNum: 5, commentNum:8 },
+        {name:'dory' , editDate:'2016/05/16', title:'发现新大陆',likeNum: 1, commentNum:0 }
+    ]
+
 
 }])
    
@@ -190,4 +196,48 @@ function ($scope, $stateParams,$interval,$http,$ionicPopup,$timeout,$state,$root
 
             });
     }
+}])
+
+
+.controller('editCardPageCtrl', ['$scope', '$stateParams','$http','$ionicPopup','$timeout','$state','$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $http, $ionicPopup, $timeout, $state,$rootScope) {
+
+    $scope.publish= function() {
+        var card ={
+            phonenumber:localStorage.getItem("phonenumber"),
+            name:'wuke',
+            likeNum:0,
+            commentNum:0,
+            hidden:false,
+            title:$scope.title,
+            body:$scope.body
+        };
+
+        $http.post($rootScope.urlAddress+'/cards/publish',card)
+            .success(function (data, status, headers, config) {
+                console.log(data);
+                if(data=='success'){
+                    var publishPopup = $ionicPopup.show({
+                        title: '发布成功'
+                    });
+                    $timeout(function() {
+                        publishPopup.close(); //1秒后关闭弹出
+                    }, 1000);
+                    $state.go('tabsController.homeTabDefaultPage');
+                }
+            });
+
+    }
+
+}])
+
+.controller('viewCardPageCtrl', ['$scope', '$stateParams','$http','$ionicPopup','$timeout','$state','$rootScope', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $http, $ionicPopup, $timeout, $state,$rootScope) {
+
+
+
 }])

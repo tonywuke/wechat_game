@@ -71,6 +71,19 @@ angular.module('app.routes', [])
     controller: 'verifyMailboxPageCtrl'
   })
 
+  .state('editCardPage', {
+    url: '/edit-card-page',
+    templateUrl: 'templates/editCardPage.html',
+    controller: 'editCardPageCtrl'
+  })
+
+  .state('viewCardPage', {
+    url: '/view-card-page',
+    templateUrl: 'templates/viewCardPage.html',
+    controller: 'viewCardPageCtrl'
+  })
+
+
   $urlRouterProvider.otherwise('/tabs-controller/home-tab-default-page')
 
   

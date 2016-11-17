@@ -13,6 +13,7 @@ var conn = mongoose.connect('mongodb://localhost/wechat');
 
 var indexRoutes = require('./routes/index_route');
 var usersRoute = require('./routes/users_route');
+var cardsRoute = require('./routes/cards_route');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRoutes);
 app.use('/users', usersRoute);
+app.use('/cards', cardsRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

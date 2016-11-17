@@ -1,15 +1,15 @@
-<ion-view style="" id="page5" title="Login Page（登录）">
-  <ion-content class="has-header" scroll="false" padding="true" ng-controller="loginPageCtrl" >
+<ion-view style="" id="page5" title="Login Page（登录）"  >
+  <ion-content class="has-header" scroll="false" padding="true" >
     <form class="list" id="loginPage-form1">
       <div style="height: 40px;" class="spacer"></div>
         <ion-list class="manual-list-fullwidth" id="loginPage-list3">
             <label name="account" id="loginPage-input1" class="item item-input">
               <span class="input-label">账号</span>
-              <input placeholder="手机号/邮箱" type="text" ng-model="user.phonenumber" >
+              <input placeholder="手机号/邮箱" type="text" ng-model="$parent.user.phonenumber" >
             </label>
             <label name="password" id="loginPage-input2" class="item item-input">
               <span class="input-label">密码</span>
-              <input placeholder="请输入密码" type="password" ng-model="user.password">
+              <input placeholder="请输入密码" type="password" ng-model="$parent.user.password">
             </label>
         </ion-list>
         <div style="width: 300px; height: 10px;" class="spacer"></div>
